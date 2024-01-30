@@ -8,7 +8,7 @@ export const todoSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    status: {
+    completed: {
         type: Boolean,
         default: false
     }

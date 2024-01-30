@@ -39,7 +39,7 @@ router.patch('/:todoId', async (req: Request, res: Response) => {
     try {
         const updatedTodo = await Todo.updateOne(
             { _id: req.params.todoId },
-            { $set: { status: req.body.status } }
+            { $set: { completed: req.body.completed } }
         );
         res.json(updatedTodo);
     } catch (err) {
