@@ -8,7 +8,7 @@ router.get('/', async (req: Request, res: Response) => {
         const todos = await Todo.find();
         res.json(todos);
     } catch (err) {
-        res.json({ message: err });
+        res.status(500).json({ message: err });
     }
 });
 
@@ -17,7 +17,7 @@ router.get('/:todoId', async (req: Request, res: Response) => {
         const todo = await Todo.findById(req.params.todoId);
         res.json(todo);
     } catch (err) {
-        res.json({ message: err });
+        res.status(404).json({ message: err });
     }
 });
 
@@ -31,7 +31,7 @@ router.post('/', async (req: Request, res: Response) => {
         const savedTodo = await todo.save();
         res.json(savedTodo);
     } catch (err) {
-        res.json({ message: err });
+        res.status(500).json({ message: err });
     }
 });
 
@@ -43,7 +43,7 @@ router.patch('/:todoId', async (req: Request, res: Response) => {
         );
         res.json(updatedTodo);
     } catch (err) {
-        res.json({ message: err });
+        res.status(404).json({ message: err });
     }
 });
 
@@ -52,7 +52,7 @@ router.delete('/:todoId', async (req: Request, res: Response) => {
         const removedTodo = await Todo.deleteOne({ _id: req.params.todoId });
         res.json(removedTodo);
     } catch (err) {
-        res.json({ message: err });
+        res.status(404).json({ message: err });
     }
 });
 
